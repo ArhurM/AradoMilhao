@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações - Show do Milhão</title>
+    <style>
+        body {
+            background-color: #000022;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .config-container {
+            background: #000044;
+            padding: 30px;
+            border-radius: 12px;
+            border: 3px solid #3333aa;
+            width: 90%;
+            max-width: 450px;
+            box-shadow: 0 0 15px rgba(0,0,255,0.3);
+        }
+        h2 { text-align: center; margin-top: 0; color: #ffff00; }
+        .row { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: bold; }
+        input[type="range"] { width: 100%; }
+        select { width: 100%; padding: 8px; border-radius: 6px; font-size: 1rem; }
+        .checkbox-row { display: flex; align-items: center; gap: 10px; }
+        .btn-voltar {
+            display: block; text-align: center; background: #0044cc; color: white;
+            padding: 10px; border-radius: 8px; text-decoration: none; font-weight: bold;
+            margin-top: 25px; border: 2px solid white; transition: 0.2s;
+        }
+        .btn-voltar:hover { background: #3388ff; }
+    </style>
+</head>
+<body>
+
+<div class="config-container">
+    <h2>Configurações do Jogo</h2>
+    
+    <div class="row checkbox-row">
+        <input type="checkbox" id="mutarSom">
+        <label for="mutarSom">Silenciar todos os sons (Mute)</label>
+    </div>
+
+    <div class="row">
+        <label id="lblFundo">Volume do Som de Fundo: 50%</label>
+        <input type="range" id="volFundo" min="0" max="1" step="0.1" value="0.5">
+    </div>
+
+    <div class="row">
+        <label id="lblEfeitos">Volume dos Efeitos (Acerto/Erro): 80%</label>
+        <input type="range" id="volEfeitos" min="0" max="1" step="0.1" value="0.8">
+    </div>
+
+    <div class="row">
+        <label for="paletaTema">Paleta de Cores do Tema:</label>
+        <select id="paletaTema">
+            <option value="classico">Clássico (Azul & Vermelho)</option>
+            <option value="noturno">Noturno Premium (Roxo & Preto)</option>
+            <option value="cyberpunk">Cyberpunk (Grafite & Neon)</option>
+        </select>
+    </div>
+
+    <a href="index.html" class="btn-voltar">Salvar e Voltar ao Jogo</a>
+</div>
+
+<script>
+    // Carregar configurações salvas ou definir padrões
+    const config = JSON.parse(localStorage.getItem('showMilhaoConfig')) || {
+        mutar: false, volFundo: 0.5, volEfeitos: 0.8, tema: 'classico'
+    };
+
+    const chkMute = document.getElementById('mutarSom');
+    const sltFundo = document.getElementById('volFundo');
+    const sltEfeitos = document.getElementById('volEfeitos');
+    const selTema = document.getElementById('paletaTema');
+
+    // Inicializar elementos na tela
+    chkMute.checked = config.mutar;
+    sltFundo.value = config.volFundo;
+    sltEfeitos.value = config.volEfeitos;
+    selTema.value = config.tema;
+    atualizarLabels();
+
+    function atualizarLabels() {
+        document.getElementById('lblFundo').innerText = `Volume do Som de Fundo: ${Math.round(sltFundo.value * 100)}%`;
+        document.getElementById('lblEfeitos').innerText = `Volume dos Efeitos (Acerto/Erro): ${Math.round(sltEfeitos.value * 100)}%`;
+    }
+
+    function salvarConfig() {
+        const novaConfig = {
+            mutar: chkMute.checked,
+            volFundo: parseFloat(sltFundo.value),
+            volEfeitos: parseFloat(sltEfeitos.value),
+            tema: selTema.value
+        };
+        localStorage.setItem('showMilhaoConfig', JSON.stringify(novaConfig));
+    }
+
+    // Eventos de alteração
+    chkMute.addEventListener('change', salvarConfig);
+    selTema.addEventListener('change', salvarConfig);
+    sltFundo.addEventListener('input', () => { atualizarLabels(); salvarConfig(); });
+    sltEfeitos.addEventListener('input', () => { atualizarLabels(); salvarConfig(); });
+</script>
+
+</body>
+</html>

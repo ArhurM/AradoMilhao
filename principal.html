@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARA do Milhão - Página Inicial</title>
+    <style>
+        /* Estilos Globais */
+        :root {
+            --primary-bg: #000040; /* Azul escuro profundo, remetendo ao estúdio */
+            --accent-blue: #0000e1; /* Azul vibrante dos painéis do logo */
+            --logo-gold: #FFD700; /* Dourado vibrante do texto */
+            --logo-gold-shadow: #B8860B; /* Dourado escuro para profundidade */
+            --white: #FFFFFF;
+            --text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--primary-bg);
+            background: radial-gradient(circle, rgba(0,0,100,1) 0%, rgba(0,0,30,1) 100%); /* Efeito de holofote */
+            color: var(--white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Evita barras de rolagem na inicial */
+        }
+
+        /* Container Principal - Responsivo */
+        .main-container {
+            text-align: center;
+            max-width: 90%;
+            width: 600px; /* Largura máxima para desktops */
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        /* Estilização da Imagem do Logo */
+        .logo-container {
+            width: 100%;
+            max-width: 500px; /* Evita que o logo fique gigante em telas grandes */
+            filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.6)); /* Brilho dourado suave ao redor do logo */
+            animation: logoEnter 1s ease-out; /* Animação de entrada */
+        }
+
+        .logo-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Animação de Entrada do Logo */
+        @keyframes logoEnter {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* Container dos Botões */
+        .menu-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 350px; /* Largura dos botões */
+            animation: menuEnter 1s ease-out 0.5s both; /* Animação de entrada com atraso */
+        }
+
+        /* Animação de Entrada do Menu */
+        @keyframes menuEnter {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Estilo dos Botões (Design 3D inspirado no logo) */
+        .btn-menu {
+            cursor: pointer;
+            padding: 15px 25px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: var(--primary-bg);
+            background: linear-gradient(180deg, #ffeb3b 0%, var(--logo-gold) 50%, #fbc02d 100%); /* Gradiente dourado */
+            border: 4px solid var(--accent-blue); /* Borda azul vibrante */
+            border-radius: 50px; /* Bordas arredondadas */
+            box-shadow: 
+                0 5px 0 #c4a000, /* Sombra 3D dourada inferior */
+                0 8px 15px rgba(0,0,0,0.4), /* Sombra projetada */
+                inset 0 2px 3px rgba(255,255,255,0.6); /* Brilho interno superior */
+            text-shadow: 1px 1px 1px rgba(255,255,255,0.5);
+            transition: all 0.2s ease-in-out;
+            position: relative;
+            top: 0;
+            text-decoration: none; /* Para o elemento <a> */
+            display: inline-block;
+        }
+
+        /* Efeito de Hover (Passar o Mouse) */
+        .btn-menu:hover {
+            background: linear-gradient(180deg, #fff176 0%, #ffe082 50%, #ffd54f 100%);
+            transform: scale(1.05);
+            box-shadow: 
+                0 5px 0 #c4a000,
+                0 10px 20px rgba(0,0,0,0.5),
+                inset 0 2px 3px rgba(255,255,255,0.8);
+        }
+
+        /* Efeito de Clique */
+        .btn-menu:active {
+            top: 4px; /* Move o botão para baixo para simular o clique */
+            box-shadow: 
+                0 1px 0 #c4a000, /* Sombra 3D reduzida */
+                0 4px 8px rgba(0,0,0,0.4),
+                inset 0 2px 3px rgba(255,255,255,0.6);
+        }
+
+        /* Botão Secundário (Sair) */
+        .btn-exit {
+            background: linear-gradient(180deg, #b0bec5 0%, #90a4ae 50%, #78909c 100%);
+            border-color: #546e7a;
+            color: #263238;
+            box-shadow: 
+                0 5px 0 #546e7a,
+                0 8px 15px rgba(0,0,0,0.3),
+                inset 0 2px 3px rgba(255,255,255,0.5);
+        }
+
+        .btn-exit:hover {
+            background: linear-gradient(180deg, #cfd8dc 0%, #b0bec5 50%, #90a4ae 100%);
+            box-shadow: 
+                0 5px 0 #546e7a,
+                0 10px 20px rgba(0,0,0,0.4),
+                inset 0 2px 3px rgba(255,255,255,0.7);
+        }
+
+        /* Rodapé de Direitos Autorais */
+        .footer {
+            position: absolute;
+            bottom: 10px;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.6);
+            text-shadow: var(--text-shadow);
+            animation: menuEnter 1s ease-out 1s both;
+        }
+
+        /* Media Queries para Celulares */
+        @media (max-width: 480px) {
+            .logo-container {
+                max-width: 90%;
+            }
+
+            .btn-menu {
+                font-size: 1.2rem;
+                padding: 12px 20px;
+                border-width: 3px;
+            }
+
+            .menu-container {
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <!-- Container do Logo -->
+        <div class="logo-container">
+         
+            <img src="logo_ara_do_milhao.png" alt="Logo ARA do Milhão" class="logo-image">
+        </div>
+
+        <!-- Container do Menu de Botões -->
+        <div class="menu-container">
+            <!-- Botão para Iniciar o Jogo -->
+            <a href="index.html" class="btn-menu">Iniciar Jogo</a>
+
+            <!-- Botão de Opções (Placeholder para expansão futura) -->
+            <a href="opcoes.html" class="btn-menu">Opções</a>
+
+            <!-- Botão para Sair (Exemplo, pode não funcionar em todos os navegadores) -->
+            <button class="btn-menu btn-exit" onclick="if(confirm('Deseja realmente sair?')) window.close();">Sair</button>
+        </div>
+    </div>
+
+    <!-- Rodapé -->
+    <div class="footer">
+        &copy; 2023 Grupo ARA. Todos os direitos reservados.
+    </div>
+
+</body>
+</html>

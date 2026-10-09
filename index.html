@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ara do Milhão</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="game-container">
+    <div class="screen-layout">
+        
+        <!-- Área da Pergunta e Alternativas -->
+        <div class="left-side">
+            <div class="red-box question-area" id="questionText">
+                CARREGANDO PERGUNTA...
+            </div>
+
+            <div class="options-area" id="optionsContainer">
+                <!-- Preenchido via JavaScript -->
+            </div>
+        </div>
+
+        <!-- Painel de Ajudas e Placar -->
+        <div class="control-panel">
+            <div class="stop-btn" onclick="pararJogo()">Parar</div>
+
+            <div class="help-title">Ajuda</div>
+
+            <div class="help-grid">
+                <div class="help-card" onclick="usarAjuda('cartas', event)">
+                    🂠<br>Cartas
+                </div>
+                <div class="help-card" onclick="usarAjuda('placas', event)">
+                    📊<br>Placas
+                </div>
+                <div class="help-card" onclick="usarAjuda('convidados', event)">
+                    👥<br>Convidados
+                </div>
+
+                <div class="help-card" onclick="usarPulo(event)">
+                    <div class="arrow-icon"></div>Pular
+                </div>
+                <div class="help-card" onclick="usarPulo(event)">
+                    <div class="arrow-icon"></div>Pular
+                </div>
+                <div class="help-card" onclick="usarPulo(event)">
+                    <div class="arrow-icon"></div>Pular
+                </div>
+            </div>
+
+            <!-- Valores Errar / Parar / Acertar -->
+            <div class="score-panel">
+                <div class="score-box">
+                    <div class="score-val" id="valErrar">0</div>
+                    <div class="score-label">Errar</div>
+                </div>
+                <div class="score-box">
+                    <div class="score-val" id="valParar">0</div>
+                    <div class="score-label">Parar</div>
+                </div>
+                <div class="score-box">
+                    <div class="score-val" id="valAcertar">1 MIL</div>
+                    <div class="score-label">Acertar</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="perguntasara.js"></script>
+<script src="jogo.js"></script>
+</body>
+</html>
