@@ -23,10 +23,10 @@ const PREMIOS = [
 ];
 
 // --- GERENCIAMENTO DE ÁUDIO ---
-const somIntro = new Audio('sounds/intro.mp3');
-const somFundo = new Audio('sounds/fundo.mp3');
-const somAcertou = new Audio('sounds/acertou.mp3');
-const somErrou = new Audio('sounds/errou.mp3');
+const somIntro = new Audio('Sounds/intro.mp3');
+const somFundo = new Audio('Sounds/fundo.mp3');
+const somAcertou = new Audio('Sounds/acertou.mp3');
+const somErrou = new Audio('Sounds/errou.mp3');
 
 somFundo.loop = true; // Define o som de fundo para repetir continuamente
 
